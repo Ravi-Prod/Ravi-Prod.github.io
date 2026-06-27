@@ -120,7 +120,9 @@ body{
 .dark{
     background:#111827;
 }
-
+.section.dark {
+    background: linear-gradient(135deg, #03142c, #071b3b);
+}
 .stats{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -170,14 +172,18 @@ body{
     margin-top:40px;
 }
 
-.industry{
-    background:#1d4ed8;
-    padding:22px;
-    border-radius:10px;
-    text-align:center;
-    font-weight:bold;
+.industry {
+    background: linear-gradient(135deg, #1f4fff, #2d68ff);
+    padding: 20px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
+.industry:hover {
+    transform: translateY(-5px);
+}
 .contact-section{
     background:#0f172a;
 }
@@ -236,4 +242,68 @@ footer{
         padding:60px 20px;
     }
 
+}
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.feature-card {
+    background: #ffffff;
+    color: #222;
+    padding: 35px;
+    border-radius: 14px;
+    transition: 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+    color: #0b3c6f;
+}
+
+.feature-card p {
+    line-height: 1.7;
+    color: #555;
+}
+
+.section-heading {
+    text-align: center;
+}
+.section h2 {
+    font-size: 52px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+.section-heading h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    max-width: 700px;
+    margin: auto;
+    color: #d1d5db;
+}
+
+.section-label {
+    color: #ff7a00;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.service-card {
+    padding: 30px;
+    border-radius: 16px;
+    min-height: 240px;
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
