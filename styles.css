@@ -1703,3 +1703,128 @@ h1, h2, h3, h4 {
     padding: 22px;
   }
 }
+
+/* ---------- Services, industries, why us, contact (v5) ---------- */
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-num {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: rgba(148, 163, 184, 0.08);
+}
+
+.services-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.industries-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.industry-card {
+  align-items: flex-start;
+  padding: 26px 24px;
+}
+
+.industry-card h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.industry-card p {
+  color: var(--text-muted);
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.industry-products {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--blue-light);
+}
+
+.why-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.why-item {
+  padding: 26px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.contact-banner .eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.contact-banner .contact-note {
+  margin: 24px auto 0;
+  font-size: 14.5px;
+  color: var(--text-faint);
+}
+
+.contact-note a {
+  color: var(--blue-light);
+  text-decoration: none;
+}
+
+.contact-note a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .services-grid,
+  .industries-grid,
+  .why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .services-grid,
+  .industries-grid,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .why-item,
+  .industry-card {
+    padding: 22px;
+  }
+}
+
+.services-grid.grid-2col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 680px) {
+  .services-grid.grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
