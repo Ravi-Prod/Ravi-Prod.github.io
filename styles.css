@@ -1919,3 +1919,12 @@ h4 {
   font-size: clamp(44px, 6vw, 72px);
   margin-bottom: 16px;
 }
+
+.heading-action {
+  margin-top: 22px;
+}
+
+.contact-method-brochure {
+  background: var(--orange-dim);
+  color: var(--orange-light);
+}
