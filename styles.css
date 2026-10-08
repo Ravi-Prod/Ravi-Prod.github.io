@@ -1837,3 +1837,23 @@ h1, h2, h3, h4 {
 .mock-token.mock-alert b {
   color: var(--orange-light);
 }
+
+/* Shared heading alignment (v8) */
+
+.contact-banner .section-heading {
+  margin-bottom: 36px;
+}
+
+.contact-banner .section-heading p {
+  max-width: none;
+  margin: 0;
+}
+
+.about-copy > p:first-child {
+  color: var(--text);
+  font-size: 17px;
+}
+
+.section-heading h2 {
+  line-height: 1.2;
+}
