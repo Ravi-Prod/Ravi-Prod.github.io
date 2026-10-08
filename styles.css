@@ -307,6 +307,7 @@ h4 {
 
 .nav-links a {
   display: inline-block;
+  white-space: nowrap;
   padding: 10px 16px;
   border-radius: 8px;
   color: var(--text-muted);
@@ -1534,7 +1535,7 @@ h4 {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1080px) {
   .nav-links {
     position: fixed;
     top: 68px;
