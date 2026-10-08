@@ -1828,3 +1828,12 @@ h1, h2, h3, h4 {
     grid-template-columns: 1fr;
   }
 }
+
+.mock-token.mock-alert {
+  background: rgba(244, 113, 28, 0.08);
+  border-color: rgba(244, 113, 28, 0.24);
+}
+
+.mock-token.mock-alert b {
+  color: var(--orange-light);
+}
