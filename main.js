@@ -28,6 +28,51 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // Contact form: send in the background and show the result inline.
+  // Without JavaScript the form posts normally and FormSubmit redirects to thank-you.html.
+  var form = document.getElementById("contactForm");
+  if (form && window.fetch) {
+    var status = document.getElementById("formStatus");
+    var submit = form.querySelector(".form-submit");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (form._honey.value) return;
+
+      var data = {};
+      new FormData(form).forEach(function (value, key) {
+        if (key !== "_next" && key !== "_honey") data[key] = value;
+      });
+
+      submit.disabled = true;
+      status.className = "form-status";
+      status.textContent = "Sending…";
+
+      fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data)
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (result) {
+          if (String(result.success) !== "true") throw new Error(result.message);
+          form.reset();
+          status.className = "form-status is-success";
+          status.textContent = "Thank you. Your request has been sent and our team will be in touch soon.";
+        })
+        .catch(function () {
+          status.className = "form-status is-error";
+          status.innerHTML =
+            'Sorry, your request could not be sent. Please email <a href="mailto:info@bgtechsystems.com">info@bgtechsystems.com</a> or message us on WhatsApp.';
+        })
+        .then(function () {
+          submit.disabled = false;
+        });
+    });
+  }
+
   // Highlight the nav link for the section currently in view (home page only).
   var sectionLinks = Array.prototype.filter.call(
     links.querySelectorAll('a[href^="#"]'),
