@@ -2469,3 +2469,26 @@ h4 {
     radial-gradient(ellipse at 15% 0%, rgba(52, 211, 153, 0.07), transparent 55%),
     var(--bg-soft);
 }
+
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 4px 0 18px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  cursor: pointer;
+}
+
+.form-consent input {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: var(--orange);
+}
+
+.form-consent a {
+  color: var(--blue-light);
+}

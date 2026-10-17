@@ -1134,13 +1134,18 @@
               <textarea id="cf-message" name="message" rows="4" required></textarea>
             </div>
 
+            <label class="form-consent">
+              <input type="checkbox" name="consent" value="Given" required />
+              <span>I consent to Nextosis Technologies processing the details above to respond to this request, as described in the <a href="privacy-policy.html">Privacy Policy</a>. I can withdraw consent at any time. *</span>
+            </label>
+
             <button type="submit" class="btn btn-primary form-submit">
               Send Request
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
             </button>
 
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-            <p class="form-privacy">By sending this form you agree to our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+
           </form>
         </div>
       </div>
