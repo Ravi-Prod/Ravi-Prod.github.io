@@ -65,7 +65,7 @@
         .catch(function () {
           status.className = "form-status is-error";
           status.innerHTML =
-            'Sorry, your request could not be sent. Please email <a href="mailto:info@bgtechsystems.com">info@bgtechsystems.com</a> or message us on WhatsApp.';
+            'Sorry, your request could not be sent. Please email <a href="mailto:info@nextosis.com">info@nextosis.com</a> or message us on WhatsApp.';
         })
         .then(function () {
           submit.disabled = false;
