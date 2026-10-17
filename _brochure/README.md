@@ -1,6 +1,6 @@
 # Product brochure source
 
-`brochure.html` is the source for `/nextosis-brochure.pdf` (6 A4 pages).
+`brochure.html` is the source for `/nextosis-brochure.pdf` (7 A4 pages).
 This folder is not published by GitHub Pages because its name starts with `_`.
 
 To rebuild the PDF after editing, from this folder:

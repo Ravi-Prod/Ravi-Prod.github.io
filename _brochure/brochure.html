@@ -293,6 +293,28 @@
   .spot-uses { margin-top: 2.5mm; padding: 2.6mm 3.5mm; border-radius: 2mm; background: var(--tint); font-size: 8.6pt; }
   .spot-uses b { color: var(--ink); }
 
+  .bx-arch { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 4mm; align-items: center; margin-top: 2mm; }
+  .bx-col { display: flex; flex-direction: column; gap: 2.2mm; }
+  .bx-title, .bx-sub { display: block; color: var(--muted); font-size: 7pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .bx-sub { margin: 2.5mm 0 1.5mm; }
+  .bx-item { padding: 2.4mm 3mm; border: 0.3mm solid var(--line); border-radius: 2mm; }
+  .bx-item b { display: block; color: var(--ink); font-size: 8.8pt; }
+  .bx-item small { display: block; font-size: 7.6pt; line-height: 1.4; }
+  .bx-core { padding: 4mm; border: 0.6mm solid var(--blue); border-radius: 3.5mm; background: #f3f7ff; }
+  .bx-core-head { display: flex; align-items: center; gap: 2.5mm; padding-bottom: 2.5mm; border-bottom: 0.3mm solid var(--line); }
+  .bx-core-head img { height: 8mm; }
+  .bx-core-head b { display: block; color: var(--ink); font-size: 11pt; }
+  .bx-core-head small { font-size: 7.6pt; }
+  .bx-chips { display: flex; flex-wrap: wrap; gap: 1.2mm; }
+  .bx-chips i { padding: 0.8mm 2.2mm; border-radius: 1.4mm; background: var(--blue-soft); color: var(--blue); font-size: 7.6pt; font-style: normal; font-weight: 600; }
+  .bx-chips.muted i { background: #fff; border: 0.3mm solid var(--line); color: var(--body); font-weight: 500; }
+  .bx-deploy { margin-top: 4mm; padding: 2.6mm 3.5mm; border-radius: 2mm; background: var(--orange-soft); font-size: 8.8pt; }
+  .bx-deploy b { color: #c2560f; }
+  .bx-sec { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .bx-sec div { padding: 3mm 3.5mm; border-radius: 2mm; background: var(--tint); }
+  .bx-sec b { display: block; color: var(--ink); font-size: 9pt; margin-bottom: 0.8mm; }
+  .bx-sec p { font-size: 7.9pt; line-height: 1.45; }
+
   .cta {
     position: absolute;
     left: 18mm;
@@ -428,7 +450,59 @@
   <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis Platform Product Brochure</span><span>02</span></div>
 </section>
 
-<!-- ================= PAGE 3: HEALTHCARE & QUEUE ================= -->
+<!-- ================= PAGE 3: ARCHITECTURE & SECURITY ================= -->
+<section class="page">
+  <div class="runhead">
+    <span class="brandline"><img src="nextosis-mark-light.png" alt="" />Nextosis Technologies</span>
+    <span>Architecture &amp; Security</span>
+  </div>
+
+  <div class="inner">
+    <span class="eyebrow">Platform Architecture</span>
+    <h2 class="page-title">One platform, every channel, your infrastructure</h2>
+
+    <div class="bx-arch">
+      <div class="bx-col">
+        <span class="bx-title">Access channels</span>
+        <div class="bx-item"><b>Web application</b><small>Any modern browser</small></div>
+        <div class="bx-item"><b>Mobile app</b><small>Android &amp; iPhone</small></div>
+        <div class="bx-item"><b>Kiosks &amp; displays</b><small>Tokens, queues, visitor check-in</small></div>
+      </div>
+      <div class="bx-core">
+        <div class="bx-core-head"><img src="nextosis-mark-light.png" alt="" /><div><b>Nextosis&trade; Platform</b><small>Secure, multi-tenant core</small></div></div>
+        <span class="bx-sub">Products</span>
+        <div class="bx-chips"><i>Clinic</i><i>Hospital</i><i>Queue</i><i>Secure</i><i>Visitor</i><i>Workforce</i><i>Asset &amp; Inventory</i><i>AI &amp; Integration</i></div>
+        <span class="bx-sub">Platform services</span>
+        <div class="bx-chips muted"><i>Identity &amp; sign-in</i><i>Roles &amp; permissions</i><i>Audit</i><i>Notifications</i><i>Licensing</i><i>Reporting</i></div>
+      </div>
+      <div class="bx-col">
+        <span class="bx-title">Connected systems</span>
+        <div class="bx-item"><b>On-site devices</b><small>CCTV &amp; NVRs, access controllers, biometric terminals via the Site Agent</small></div>
+        <div class="bx-item"><b>Enterprise systems</b><small>REST APIs, webhooks, HL7, FHIR, MQTT</small></div>
+        <div class="bx-item"><b>Messaging</b><small>WhatsApp, SMS and email</small></div>
+      </div>
+    </div>
+    <div class="bx-deploy"><b>Deploy your way:</b> SaaS in our managed cloud, or on-premises on your own servers under license. The features are the same.</div>
+
+    <span class="eyebrow" style="margin-top: 8mm;">Security &amp; Trust</span>
+    <h3 class="section-title">Enterprise-grade security, built in</h3>
+    <div class="bx-sec">
+      <div><b>Encryption</b><p>HTTPS with HSTS for all traffic; photos, device passwords and API secrets encrypted at rest; passwords never stored in readable form.</p></div>
+      <div><b>Secure sign-in</b><p>Two-step verification, lockout after failed attempts, sign-in rate limiting and per-organization password policies.</p></div>
+      <div><b>Role-based access</b><p>Permissions for every screen and action, with roles defined by each organization.</p></div>
+      <div><b>Data separation</b><p>Each organization's records kept separate in a multi-tenant design.</p></div>
+      <div><b>Complete audit trail</b><p>Who did what and when, with exportable audit reports.</p></div>
+      <div><b>Verified backups</b><p>Automated nightly backups, each checked for integrity, kept on a retention schedule.</p></div>
+      <div><b>Monitoring &amp; alerts</b><p>Continuous health and performance monitoring with alerts.</p></div>
+      <div><b>Secure site connectivity</b><p>Outbound-only Site Agent: no open firewall ports or public IP needed.</p></div>
+      <div><b>Your data, your choice</b><p>On-premises keeps every record inside your network.</p></div>
+    </div>
+  </div>
+
+  <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis&trade; Platform Product Brochure</span><span>03</span></div>
+</section>
+
+<!-- ================= PAGE 4: HEALTHCARE & QUEUE ================= -->
 <section class="page">
   <div class="runhead">
     <span class="brandline"><img src="nextosis-mark-light.png" alt="" />Nextosis Technologies</span>
@@ -497,10 +571,10 @@
     </div>
   </div>
 
-  <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis Platform Product Brochure</span><span>03</span></div>
+  <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis Platform Product Brochure</span><span>04</span></div>
 </section>
 
-<!-- ================= PAGE 4: SECURITY, WORKFORCE, INVENTORY ================= -->
+<!-- ================= PAGE 5: SECURITY, WORKFORCE, INVENTORY ================= -->
 <section class="page">
   <div class="runhead">
     <span class="brandline"><img src="nextosis-mark-light.png" alt="" />Nextosis Technologies</span>
@@ -588,10 +662,10 @@
     </div>
   </div>
 
-  <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis Platform Product Brochure</span><span>04</span></div>
+  <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis Platform Product Brochure</span><span>05</span></div>
 </section>
 
-<!-- ================= PAGE 5: VIDEO ANALYTICS & GPS ATTENDANCE ================= -->
+<!-- ================= PAGE 6: VIDEO ANALYTICS & GPS ATTENDANCE ================= -->
 <section class="page">
   <div class="runhead">
     <span class="brandline"><img src="nextosis-mark-light.png" alt="" />Nextosis Technologies</span>
@@ -640,10 +714,10 @@
     </div>
   </div>
 
-  <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis&trade; Platform Product Brochure</span><span>05</span></div>
+  <div class="runfoot"><span>Nextosis Technologies &middot; Nextosis&trade; Platform Product Brochure</span><span>06</span></div>
 </section>
 
-<!-- ================= PAGE 6: INDUSTRIES, PROCESS, CONTACT ================= -->
+<!-- ================= PAGE 7: INDUSTRIES, PROCESS, CONTACT ================= -->
 <section class="page">
   <div class="runhead">
     <span class="brandline"><img src="nextosis-mark-light.png" alt="" />Nextosis Technologies</span>
@@ -688,7 +762,7 @@
     </ul>
   </div>
 
-  <div class="runfoot"><span>&copy; 2026 Nextosis Technologies. Nextosis&trade; is a trademark of Nextosis Technologies. Features are subject to change.</span><span>06</span></div>
+  <div class="runfoot"><span>&copy; 2026 Nextosis Technologies. Nextosis&trade; is a trademark of Nextosis Technologies. Features are subject to change.</span><span>07</span></div>
 </section>
 
 </body>
