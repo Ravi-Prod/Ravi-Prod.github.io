@@ -28,6 +28,26 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // "Request the brochure": the brochure isn't a public download. These links
+  // open the demo form with "Product brochure" chosen; the team sends it.
+  function requestBrochure() {
+    var interest = document.getElementById("cf-interest");
+    var message = document.getElementById("cf-message");
+    if (!interest) return;
+    interest.value = "Product brochure";
+    if (message && !message.value) {
+      message.value = "Please send me the Nextosis Platform product brochure.";
+    }
+  }
+
+  document.querySelectorAll("[data-request-brochure]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      if (document.getElementById("cf-interest")) requestBrochure();
+    });
+  });
+
+  if (/[?&]brochure=1(&|$)/.test(window.location.search)) requestBrochure();
+
   // Contact form: send in the background and show the result inline.
   // Without JavaScript the form posts normally and FormSubmit redirects to thank-you.html.
   var form = document.getElementById("contactForm");
