@@ -1928,3 +1928,32 @@ h4 {
   background: var(--orange-dim);
   color: var(--orange-light);
 }
+
+/* ---------- Alignment refinements (v15) ---------- */
+
+.hero-content h1,
+.section-heading h2,
+.page-hero h1,
+.contact-form h3 {
+  text-wrap: balance;
+}
+
+.section-heading p,
+.page-hero p,
+.hero-content p,
+.card p,
+.about-copy p {
+  text-wrap: pretty;
+}
+
+.about-grid {
+  align-items: start;
+}
+
+.hero-products {
+  gap: 12px 28px;
+}
+
+.hero-products ul {
+  gap: 8px 24px;
+}
