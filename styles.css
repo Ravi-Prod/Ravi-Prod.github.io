@@ -1494,7 +1494,7 @@ h4 {
 
 /* ---------- 15. Responsive ---------- */
 
-@media (max-width: 1024px) {
+@media (max-width: 960px) {
   .hero-inner,
   .about-grid {
     grid-template-columns: 1fr;
@@ -1890,7 +1890,7 @@ h4 {
   height: 30px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 960px) {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -1956,4 +1956,14 @@ h4 {
 
 .hero-products ul {
   gap: 8px 24px;
+}
+
+@media (min-width: 961px) and (max-width: 1100px) {
+  .hero-inner {
+    gap: 40px;
+  }
+
+  .hero .btn {
+    padding: 13px 20px;
+  }
 }
