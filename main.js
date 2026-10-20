@@ -48,8 +48,10 @@
 
   if (/[?&]brochure=1(&|$)/.test(window.location.search)) requestBrochure();
 
-  // Contact form: send in the background and show the result inline.
-  // Without JavaScript the form posts normally and FormSubmit redirects to thank-you.html.
+  // Contact form: sent to Nextosis Platform (our own API), where it becomes
+  // a sales lead. Sent in the background and the result shown inline;
+  // without JavaScript the form posts normally and the API redirects to
+  // thank-you.html.
   var form = document.getElementById("contactForm");
   if (form && window.fetch) {
     var status = document.getElementById("formStatus");
@@ -61,23 +63,20 @@
 
       var data = {};
       new FormData(form).forEach(function (value, key) {
-        if (key !== "_next" && key !== "_honey") data[key] = value;
+        if (key !== "_honey") data[key] = value;
       });
 
       submit.disabled = true;
       status.className = "form-status";
       status.textContent = "Sending…";
 
-      fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+      fetch(form.action, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(data)
       })
         .then(function (response) {
-          return response.json();
-        })
-        .then(function (result) {
-          if (String(result.success) !== "true") throw new Error(result.message);
+          if (!response.ok) throw new Error("HTTP " + response.status);
           form.reset();
           status.className = "form-status is-success";
           status.textContent = "Thank you. Your request has been sent and our team will be in touch soon.";
