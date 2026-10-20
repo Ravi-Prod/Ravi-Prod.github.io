@@ -2657,7 +2657,12 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  padding: 0 16px 10px;
+  padding: 8px 16px 10px;
+  /* Many options scroll on their own instead of crowding out the chat. */
+  max-height: 35%;
+  overflow-y: auto;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
 }
 
 .chat-chips:empty {

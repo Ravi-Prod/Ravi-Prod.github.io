@@ -174,7 +174,16 @@
     node.appendChild(el("p", { text: text }));
     if (link) node.appendChild(el("a", { href: link.href, text: link.text, target: link.external ? "_blank" : "_self", rel: link.external ? "noopener" : "" }));
     log.appendChild(node);
+    toLatest();
+  }
+
+  // Keep the newest message in view - also after the reply options below
+  // it appear (they take room from the conversation).
+  function toLatest() {
     log.scrollTop = log.scrollHeight;
+    window.requestAnimationFrame(function () {
+      log.scrollTop = log.scrollHeight;
+    });
   }
 
   function say(text, link) {
@@ -198,6 +207,8 @@
       });
       chips.appendChild(chip);
     });
+    chips.scrollTop = 0;
+    toLatest();
   }
 
   // ---- Conversation ----------------------------------------------------
