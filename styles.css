@@ -1820,8 +1820,7 @@ h4 {
 }
 
 .form-honey {
-  position: absolute;
-  left: -9999px;
+  display: none;
 }
 
 .form-submit {

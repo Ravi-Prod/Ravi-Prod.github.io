@@ -57,13 +57,24 @@
     var status = document.getElementById("formStatus");
     var submit = form.querySelector(".form-submit");
 
+    var showError = function (reason) {
+      status.className = "form-status is-error";
+      status.textContent = (reason ? reason + " " : "Sorry, your request could not be sent. ") + "You can also email ";
+      var mail = document.createElement("a");
+      mail.href = "mailto:info@nextosis.com";
+      mail.textContent = "info@nextosis.com";
+      status.appendChild(mail);
+      status.appendChild(document.createTextNode(" or message us on WhatsApp."));
+    };
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      if (form._honey.value) return;
 
+      // Everything is sent, the spam trap too: the API decides, so a
+      // person is never silently turned away.
       var data = {};
       new FormData(form).forEach(function (value, key) {
-        if (key !== "_honey") data[key] = value;
+        data[key] = value;
       });
 
       submit.disabled = true;
@@ -76,15 +87,29 @@
         body: JSON.stringify(data)
       })
         .then(function (response) {
-          if (!response.ok) throw new Error("HTTP " + response.status);
-          form.reset();
-          status.className = "form-status is-success";
-          status.textContent = "Thank you. Your request has been sent and our team will be in touch soon.";
+          if (response.ok) {
+            form.reset();
+            status.className = "form-status is-success";
+            status.textContent = "Thank you. Your request has been sent and our team will be in touch soon.";
+            return;
+          }
+
+          // Say why: too many tries from this network, or a detail to fix.
+          return response
+            .json()
+            .catch(function () {
+              return {};
+            })
+            .then(function (body) {
+              var reason =
+                response.status === 429
+                  ? "Several requests were sent from your network just now. Please wait 10 minutes and try again."
+                  : (body && body.message) || "";
+              showError(reason);
+            });
         })
         .catch(function () {
-          status.className = "form-status is-error";
-          status.innerHTML =
-            'Sorry, your request could not be sent. Please email <a href="mailto:info@nextosis.com">info@nextosis.com</a> or message us on WhatsApp.';
+          showError("");
         })
         .then(function () {
           submit.disabled = false;
