@@ -59,7 +59,7 @@
   --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.4);
 
-  --container: 1240px;
+  --container: 1400px;
   --nav-height: 72px;
 }
 
@@ -1400,7 +1400,7 @@ h4 {
 }
 
 .legal-content {
-  max-width: 760px;
+  max-width: 880px;
 }
 
 .legal-content .updated {
@@ -1449,7 +1449,7 @@ h4 {
 }
 
 .apply-card {
-  max-width: 760px;
+  max-width: 880px;
   margin-top: 56px;
   padding: 36px;
   border: 1px solid var(--border);
