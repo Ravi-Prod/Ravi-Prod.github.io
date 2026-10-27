@@ -1448,6 +1448,48 @@ h4 {
   text-underline-offset: 2px;
 }
 
+.legal-content table {
+  width: 100%;
+  margin: 0 0 16px;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+
+.legal-content th,
+.legal-content td {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  color: var(--text-muted);
+}
+
+.legal-content th {
+  color: var(--text);
+  font-weight: 600;
+  background: var(--bg-soft);
+}
+
+.fill-blank {
+  display: inline-block;
+  min-width: 220px;
+  border-bottom: 1px dotted var(--text-faint);
+  color: var(--text);
+}
+
+.legal-content .sign-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin: 24px 0 16px;
+}
+
+@media (max-width: 640px) {
+  .legal-content .sign-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .apply-card {
   max-width: 880px;
   margin-top: 56px;
@@ -2755,5 +2797,69 @@ h4 {
   body.chat-open .whatsapp-float,
   body.chat-open .chat-launcher {
     display: none;
+  }
+}
+
+/* Printing a legal document: plain black-on-white, no nav/footer/chrome. */
+@media print {
+  .navbar,
+  .footer,
+  .whatsapp-float,
+  .chat-launcher,
+  .chat-panel,
+  .skip-link,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  .page-hero,
+  .section {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  .page-hero {
+    margin-bottom: 24px;
+  }
+
+  .legal-content {
+    max-width: none;
+  }
+
+  .legal-content h2,
+  .legal-content strong,
+  .page-hero h1 {
+    color: #000;
+  }
+
+  .legal-content p,
+  .legal-content li,
+  .legal-content .updated,
+  .page-hero p,
+  .eyebrow {
+    color: #333;
+  }
+
+  .legal-content a {
+    color: #111;
+    text-decoration: underline;
+  }
+
+  .legal-content h2 {
+    page-break-after: avoid;
+  }
+
+  .legal-content table {
+    page-break-inside: avoid;
+  }
+
+  .fill-blank {
+    border-bottom: 1px solid #111;
   }
 }
