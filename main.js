@@ -152,3 +152,6 @@
     observer.observe(document.getElementById(id));
   });
 })();
+
+// Print buttons (no inline onclick: the Content-Security-Policy runs only this site's files).
+document.querySelectorAll("[data-print]").forEach((button) => button.addEventListener("click", () => window.print()));
