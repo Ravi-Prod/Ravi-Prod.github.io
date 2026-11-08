@@ -17,7 +17,8 @@
   /* Surfaces: a light, corporate page */
   --bg: #ffffff;
   --bg-soft: #f5f7fa;
-  --surface: #ffffff;
+  --surface: rgba(255, 255, 255, 0.66);
+  --glass-shadow: 0 8px 30px rgba(15, 31, 61, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   --surface-2: #f8fafc;
   --border: #e2e8f0;
   --border-strong: #cbd5e1;
@@ -66,6 +67,31 @@
 
 /* ---------- 2. Base & accessibility ---------- */
 
+/* Glass: frosted, see-through surfaces over the page's soft tint. */
+.card,
+.stats-band,
+.vm-item,
+.industry-card,
+.why-item,
+.process-step,
+.project-featured,
+.tech-strip span,
+.apply-card,
+.contact-methods a,
+.contact-form,
+.spotlight-card,
+.arch-item,
+.arch-core,
+.arch-deploy-grid > div,
+.hero-products li,
+.mock-window,
+.float-card,
+.badge {
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: var(--glass-shadow);
+}
+
 *,
 *::before,
 *::after {
@@ -80,7 +106,12 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(1200px 800px at 88% -8%, rgba(31, 90, 166, 0.13), transparent 60%),
+    radial-gradient(900px 700px at -8% 38%, rgba(232, 105, 30, 0.07), transparent 60%),
+    radial-gradient(1100px 800px at 100% 100%, rgba(31, 90, 166, 0.09), transparent 60%),
+    #f6f8fc;
+  background-attachment: fixed;
   color: var(--text);
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   font-size: 16px;
@@ -162,7 +193,7 @@ h4 {
 }
 
 .section-alt {
-  background: var(--bg-soft);
+  background: rgba(241, 245, 250, 0.55);
 }
 
 .eyebrow {
@@ -248,7 +279,7 @@ h4 {
   width: 100%;
   z-index: 1000;
   padding: 14px var(--gutter);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.7);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -256,7 +287,7 @@ h4 {
 }
 
 .navbar.is-scrolled {
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 8px 24px rgba(15, 31, 61, 0.098);
 }
 
@@ -370,7 +401,9 @@ h4 {
   justify-content: center;
   padding: 132px var(--gutter) 48px;
   overflow: hidden;
-  background: linear-gradient(180deg, #f3f6fb 0%, #ffffff 85%);
+  background:
+    radial-gradient(ellipse at 78% 18%, rgba(31, 90, 166, 0.16), transparent 55%),
+    radial-gradient(ellipse at 8% 85%, rgba(232, 105, 30, 0.09), transparent 50%);
 }
 
 .hero-grid-bg {
@@ -478,9 +511,8 @@ h4 {
   overflow: hidden;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
-  background: #ffffff;
-  box-shadow: 0 24px 60px rgba(15, 31, 61, 0.12), 0 0 0 1px rgba(15, 31, 61, 0.04);
-  transform: perspective(1600px) rotateY(-6deg) rotateX(2deg);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 60px rgba(15, 31, 61, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .mock-bar {
@@ -659,7 +691,7 @@ h4 {
   padding: 12px 16px;
   border: 1px solid var(--border-strong);
   border-radius: 14px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.72);
   box-shadow: var(--shadow-lg);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -707,6 +739,118 @@ h4 {
 .float-icon svg {
   width: 18px;
   height: 18px;
+}
+
+/* Hero carousel: real app screens, one per product, cross-fading. */
+
+.carousel-track {
+  position: relative;
+  aspect-ratio: 1100 / 588;
+  background: #f6f8fc;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.carousel-slide.is-active {
+  opacity: 1;
+}
+
+.carousel-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.carousel-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.carousel-caption b {
+  display: block;
+  color: var(--text);
+  font-size: 15.5px;
+}
+
+.carousel-caption span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.carousel-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--border-strong);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.carousel-dot.is-active {
+  width: 24px;
+  background: var(--blue);
+}
+
+.carousel-note {
+  margin-top: 10px;
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-slide {
+    transition: none;
+  }
 }
 
 @keyframes float {
@@ -1249,7 +1393,7 @@ h4 {
   border-top: 1px solid var(--border);
   background:
     radial-gradient(circle at 30% 0%, rgba(31, 90, 166, 0.1), transparent 55%),
-    linear-gradient(180deg, #f5f7fa, #f5f7fa);
+    rgba(241, 245, 250, 0.55);
 }
 
 .contact-banner .section-heading {
@@ -1367,7 +1511,7 @@ h4 {
   border-bottom: 1px solid var(--border);
   background:
     radial-gradient(circle at 82% 0%, rgba(31, 90, 166, 0.08), transparent 45%),
-    linear-gradient(180deg, #f3f6fb 0%, #ffffff 100%);
+    radial-gradient(ellipse at 80% 10%, rgba(31, 90, 166, 0.14), transparent 55%);
 }
 
 .page-hero h1 {
@@ -2086,7 +2230,7 @@ h4 {
 .hero {
   background:
     radial-gradient(ellipse at 80% 15%, rgba(31, 90, 166, 0.16), transparent 50%),
-    linear-gradient(180deg, #f3f6fb 0%, #ffffff 100%);
+    radial-gradient(ellipse at 80% 10%, rgba(31, 90, 166, 0.14), transparent 55%);
 }
 
 .hero-grid-bg {
@@ -2389,7 +2533,7 @@ h4 {
 .security-band {
   background:
     radial-gradient(ellipse at 15% 0%, rgba(31, 90, 166, 0.14), transparent 55%),
-    linear-gradient(180deg, #f5f7fa, #f5f7fa);
+    rgba(241, 245, 250, 0.55);
 }
 
 .sec-item {
