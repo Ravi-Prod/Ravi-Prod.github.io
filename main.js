@@ -156,9 +156,10 @@
 // Print buttons (no inline onclick: the Content-Security-Policy runs only this site's files).
 document.querySelectorAll("[data-print]").forEach((button) => button.addEventListener("click", () => window.print()));
 
-// Hero carousel: one product per slide, every 6 seconds; pauses on hover or
-// focus and when the tab is hidden, never moves on its own for people who
-// prefer reduced motion; arrows, dots, arrow keys and swipe.
+// Hero carousel: one product per slide, every 6 seconds (a plain switch,
+// no fade, for people who prefer reduced motion); the Pause button stops it,
+// and it waits while the pointer is over it, while a keyboard user is in it,
+// and while the tab is hidden. Arrows, dots, arrow keys and swipe.
 (function () {
   const root = document.querySelector("[data-carousel]");
   if (!root) return;
@@ -167,10 +168,12 @@ document.querySelectorAll("[data-print]").forEach((button) => button.addEventLis
   const url = root.querySelector("[data-carousel-url]");
   const title = root.querySelector("[data-carousel-title]");
   const line = root.querySelector("[data-carousel-line]");
-  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const toggle = root.querySelector("[data-toggle]");
   let current = 0;
   let timer = null;
-  let paused = false;
+  let hovering = false;
+  let keyboardInside = false;
+  let stopped = false;
 
   function show(index) {
     current = (index + slides.length) % slides.length;
@@ -189,38 +192,43 @@ document.querySelectorAll("[data-print]").forEach((button) => button.addEventLis
     line.textContent = slide.dataset.line;
   }
 
-  function start() {
-    if (still || paused || document.hidden) return;
-    stop();
-    timer = window.setInterval(() => show(current + 1), 6000);
-  }
-
-  function stop() {
+  function schedule() {
     if (timer) window.clearInterval(timer);
     timer = null;
+    if (stopped || hovering || keyboardInside || document.hidden) return;
+    timer = window.setInterval(() => show(current + 1), 6000);
   }
 
   function go(index) {
     show(index);
-    start();
+    schedule();
   }
 
   root.querySelector("[data-prev]").addEventListener("click", () => go(current - 1));
   root.querySelector("[data-next]").addEventListener("click", () => go(current + 1));
   dots.forEach((dot) => dot.addEventListener("click", () => go(Number(dot.dataset.dot))));
+  toggle.addEventListener("click", () => {
+    stopped = !stopped;
+    root.classList.toggle("is-stopped", stopped);
+    toggle.setAttribute("aria-pressed", stopped ? "true" : "false");
+    toggle.setAttribute("aria-label", stopped ? "Play the slides" : "Pause the slides");
+    schedule();
+  });
 
   root.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") go(current - 1);
     if (event.key === "ArrowRight") go(current + 1);
   });
 
-  const pause = () => { paused = true; stop(); };
-  const resume = () => { paused = false; start(); };
-  root.addEventListener("mouseenter", pause);
-  root.addEventListener("mouseleave", resume);
-  root.addEventListener("focusin", pause);
-  root.addEventListener("focusout", resume);
-  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+  root.addEventListener("mouseenter", () => { hovering = true; schedule(); });
+  root.addEventListener("mouseleave", () => { hovering = false; schedule(); });
+  // Only keyboard focus waits (a mouse click leaves focus on the button).
+  root.addEventListener("focusin", (event) => {
+    keyboardInside = event.target.matches(":focus-visible");
+    schedule();
+  });
+  root.addEventListener("focusout", () => { keyboardInside = false; schedule(); });
+  document.addEventListener("visibilitychange", schedule);
 
   let touchX = null;
   const track = root.querySelector(".carousel-track");
@@ -232,5 +240,5 @@ document.querySelectorAll("[data-print]").forEach((button) => button.addEventLis
     if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
   });
 
-  start();
+  schedule();
 })();
