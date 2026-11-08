@@ -56,6 +56,17 @@
   if (form && window.fetch) {
     var status = document.getElementById("formStatus");
     var submit = form.querySelector(".form-submit");
+    var consent = form.querySelector('input[name="consent"]');
+
+    // Send Request works only once the consent box is ticked (set here, not
+    // in the page, so the form still posts without JavaScript, where the
+    // box's own "required" stops it instead).
+    var syncSubmit = function () {
+      submit.disabled = !consent.checked;
+      submit.title = consent.checked ? "" : "Tick the consent box to send your request.";
+    };
+    consent.addEventListener("change", syncSubmit);
+    syncSubmit();
 
     var showError = function (reason) {
       status.className = "form-status is-error";
@@ -78,6 +89,7 @@
       });
 
       submit.disabled = true;
+      submit.classList.add("is-sending");
       status.className = "form-status";
       status.textContent = "Sending…";
 
@@ -112,7 +124,9 @@
           showError("");
         })
         .then(function () {
-          submit.disabled = false;
+          // After a successful send the form is cleared, consent included.
+          submit.classList.remove("is-sending");
+          syncSubmit();
         });
     });
   }

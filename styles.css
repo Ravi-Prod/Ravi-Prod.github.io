@@ -259,6 +259,14 @@ h4 {
   box-shadow: 0 6px 16px rgba(31, 90, 166, 0.24);
 }
 
+.btn:disabled,
+.btn:disabled:hover {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .btn-outline {
   background: rgba(15, 31, 61, 0.024);
   color: var(--text);
@@ -2012,7 +2020,7 @@ h4 {
   margin-top: 4px;
 }
 
-.form-submit:disabled {
+.form-submit.is-sending:disabled {
   opacity: 0.6;
   cursor: progress;
   transform: none;
